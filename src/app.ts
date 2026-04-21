@@ -35,7 +35,10 @@ import compression from "compression";
 export const app = express();
 
 app.use(compression());
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: false,
+  contentSecurityPolicy: false,
+}));
 app.use(mongoSanitize());
 app.use(xss());
 app.use(hpp());
@@ -51,10 +54,8 @@ app.use(cookieParser());
 // Update CORS to allow requests from mobile app and web dashboard
 const allowedOrigins = [
   "http://localhost:3000",
-  "http://localhost:19006",
-  "http://localhost:19000",
-  "http://localhost:8081",
   "http://localhost:5173",
+  "http://localhost:8081",
 ];
 
 if (process.env.ORIGIN && process.env.ORIGIN !== "*") {
@@ -63,7 +64,16 @@ if (process.env.ORIGIN && process.env.ORIGIN !== "*") {
 
 app.use(
   cors({
-    origin: process.env.ORIGIN === "*" ? "*" : allowedOrigins,
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.indexOf(origin) !== -1 || process.env.ORIGIN === "*") {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
