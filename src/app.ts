@@ -48,19 +48,22 @@ app.use(morgan("dev", {
 app.use(express.json({ limit: "50mb" }));
 app.use(cookieParser());
 
-// Update CORS to allow requests from mobile app
+// Update CORS to allow requests from mobile app and web dashboard
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:19006",
+  "http://localhost:19000",
+  "http://localhost:8081",
+  "http://localhost:5173",
+];
+
+if (process.env.ORIGIN && process.env.ORIGIN !== "*") {
+  allowedOrigins.push(process.env.ORIGIN);
+}
+
 app.use(
   cors({
-    origin:
-      process.env.ORIGIN === "*"
-        ? "*"
-        : [
-            "http://localhost:3000",
-            "http://localhost:19006",
-            "http://localhost:19000",
-            "http://localhost:8081",
-            "http://localhost:5173",
-          ],
+    origin: process.env.ORIGIN === "*" ? "*" : allowedOrigins,
     credentials: true,
   })
 );
