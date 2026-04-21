@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lms Activation Mail</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0
+    " />
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-wrapper {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .email-header {
+            background-color: #007BFF;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .email-body {
+            padding: 20px;
+        }
+        .email-footer {
+            background-color: #f4f4f4;
+            color: #333333;
+            padding: 10px;
+            text-align: center;
+        }
+        a {
+            color: #007BFF;
+        }
+     </style>
+</head>
+<body>
+    <div class="email-wrapper">
+       <div class="email-header">
+          <h1>Welcome to LMS</h1>
+      </div>
+      <div class="email-body">
+          <p> hello <%= user.name %>,</p>
+          <p>Thank you for registering with us. Please click the link below to activate your:</p>
+          <h2><%=activationCode%></h2>
+          <p>please enter code within 5 minutes to activate your account.</p>
+          <p>if you did not register with us, please ignore this email.</p>
+      </div>
+      <div class="email-footer">
+         <p>if you have any questions, please contact us at <a href="mailto:gopaljha0877@gmail.com">
+      </div>   
+    </div>
+</body>
+</html>
