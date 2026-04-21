@@ -4,7 +4,7 @@ interface IDevice extends Document {
   userId: string;
   deviceId: string;
   platform: string;
-  model: string;
+  deviceModel: string;
   lastLogin: Date;
 }
 
@@ -19,7 +19,7 @@ const deviceSchema = new Schema<IDevice>({
     required: true,
   },
   platform: String,
-  model: String,
+  deviceModel: String,
   lastLogin: {
     type: Date,
     default: Date.now,

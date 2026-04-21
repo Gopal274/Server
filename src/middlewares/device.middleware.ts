@@ -45,7 +45,7 @@ export const checkDeviceLimit = catchAsyncError(
       userId,
       deviceId,
       platform,
-      model,
+      deviceModel: model,
     });
 
     next();
