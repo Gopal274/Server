@@ -10,8 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsx server.ts",
     "dev": "tsx watch server.ts"
-    },
-    "dependencies": {
+  },
+  "dependencies": {
     "@types/bcryptjs": "^2.4.6",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
@@ -52,9 +52,11 @@
     "xss-clean": "^0.1.4",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
-    },    "devDependencies": {
+  },
+  "devDependencies": {
     "@types/compression": "^1.8.1",
     "@types/fluent-ffmpeg": "^2.1.28",
     "@types/morgan": "^1.9.10",
     "@types/node-cron": "^3.0.11"
-    }
+  }
+}
